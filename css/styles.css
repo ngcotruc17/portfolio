@@ -1,0 +1,854 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600&display=swap');
+
+/* CSS */
+.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #e0e0e0;
+    background-color: #121212;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Header Styles */
+header {
+    background-color: #1a1a1a;
+    padding: 1rem 2rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header:hover {
+    background-color: #111;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+header .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+header .logo a {
+    text-decoration: none;
+    color: #fff;
+}
+
+header nav {
+    margin-left: auto;
+    margin-right: 2rem; /* Thêm khoảng cách bên phải */
+}
+
+header nav ul {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    margin: 0 1.5rem;
+    position: relative;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+header nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ff6347;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    border-radius: 30px;
+}
+
+header nav ul li a:hover::before {
+    opacity: 0.2;
+}
+
+header nav ul li a:hover {
+    color: #fff;
+    transform: translateY(-3px);
+    background-color: transparent;
+}
+
+header nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #ff6347;
+    transition: width 0.3s ease, left 0.3s ease;
+    transform: translateX(-50%);
+}
+
+header nav ul li a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Hero Section Styles */
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/hero-bg.jpg') no-repeat center center/cover;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    background-attachment: fixed; /* Thêm hiệu ứng parallax */
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(255, 99, 71, 0.6), rgba(255, 99, 71, 0) 80%);
+    animation: rotateBackground 15s linear infinite;
+    z-index: 1;
+    opacity: 0.6; /* Thêm độ mờ cho gradient */
+}
+
+@keyframes rotateBackground {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.hero-section h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4.5rem;
+    margin: 0;
+    z-index: 2;
+    position: relative;
+    animation: fadeIn 2s ease-in-out;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Thêm bóng đổ cho tiêu đề */
+}
+
+.hero-section p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.75rem;
+    z-index: 2;
+    position: relative;
+    animation: fadeIn 2.5s ease-in-out;
+    max-width: 80%; /* Giới hạn chiều rộng để dễ đọc hơn */
+    margin: 0 auto; /* Căn giữa đoạn văn bản */
+}
+
+.hero-section .btn {
+    padding: 1rem 2.5rem;
+    background-color: #ff6347;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-top: 2rem;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 2;
+    position: relative;
+    animation: fadeIn 3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Thêm bóng đổ cho nút */
+}
+
+.hero-section .btn:hover {
+    background-color: #e5533b;
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); /* Tăng cường bóng đổ khi hover */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Introduction Section Styles */
+.introduction {
+    padding: 6rem 2rem;
+    background-color: #f9f9f9; /* Nền sáng hơn để tạo sự mềm mại */
+    color: #333; /* Màu chữ tối cho dễ đọc */
+    font-family: 'Roboto', sans-serif;
+}
+
+.intro-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem; /* Giảm khoảng cách giữa avatar và chi tiết */
+    flex-wrap: wrap;
+}
+
+.intro-avatar {
+    flex: 1;
+    max-width: 250px; /* Giảm kích thước tối đa của ảnh đại diện để phù hợp với độ cao của chữ */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Tăng bóng đổ để làm nổi bật ảnh đại diện */
+}
+
+.intro-avatar img {
+    width: 100%;
+    height: auto;
+    border: 5px solid #ff6347; /* Màu viền nổi bật */
+    object-fit: cover;
+}
+
+.intro-details {
+    flex: 2;
+    max-width: 700px; /* Kích thước tối đa của phần chi tiết */
+    text-align: left;
+}
+
+.intro-details h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem; /* Tăng kích thước chữ tiêu đề chính */
+    margin: 0 0 1rem 0; /* Giảm khoảng cách trên và dưới tiêu đề */
+    color: #ff6347;
+    line-height: 1.2; /* Tăng khoảng cách giữa các dòng */
+}
+
+.intro-details h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem; /* Tăng kích thước chữ tiêu đề phụ */
+    color: #555555; /* Màu chữ phụ tinh tế */
+    margin-bottom: 1.5rem; /* Tăng khoảng cách dưới tiêu đề phụ */
+}
+
+.intro-details p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25rem; /* Tăng kích thước chữ đoạn văn */
+    line-height: 1.8; /* Tăng khoảng cách giữa các dòng */
+    margin-bottom: 2rem; /* Tăng khoảng cách dưới đoạn văn */
+    color: #444; /* Màu chữ dễ đọc hơn */
+}
+
+.personal-info {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.15rem; /* Tăng kích thước chữ thông tin cá nhân */
+    color: #444;
+}
+
+.personal-info div {
+    margin-bottom: 1rem; /* Tăng khoảng cách giữa các thông tin cá nhân */
+    line-height: 1.6; /* Tăng khoảng cách giữa các dòng */
+}
+
+.personal-info strong {
+    color: #ff6347;
+    font-weight: 700; /* Tăng độ đậm để làm nổi bật thông tin quan trọng */
+}
+
+
+/* My Skills Section Styles */
+.my-skills {
+    padding: 4rem 2rem; /* Tăng padding để tạo không gian */
+    background-color: #f4f4f4; /* Nền sáng hơn để làm nổi bật phần kỹ năng */
+    color: #333333; /* Màu chữ tối để dễ đọc */
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.my-skills h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem; /* Tăng kích thước tiêu đề */
+    margin-bottom: 2rem; /* Tăng khoảng cách dưới tiêu đề */
+    color: #ff6347;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem; /* Giữ padding dưới tiêu đề */
+    border-bottom: 4px solid #ff6347; /* Tăng độ dày của đường viền dưới */
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Sử dụng grid layout để linh hoạt */
+    gap: 2rem; /* Tăng khoảng cách giữa các phần tử */
+    justify-content: center;
+}
+
+.skills-category {
+    background-color: #ffffff; /* Nền trắng cho các mục */
+    border-radius: 12px; /* Bo tròn góc nhiều hơn */
+    padding: 2rem; /* Tăng padding */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Tăng bóng đổ để nổi bật hơn */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skills-category:hover {
+    transform: translateY(-8px); /* Tăng hiệu ứng nổi lên */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.skills-category h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.75rem; /* Tăng kích thước tiêu đề mục */
+    margin-bottom: 1.5rem; /* Tăng khoảng cách dưới tiêu đề mục */
+    color: #ff6347;
+}
+
+.skill {
+    margin-bottom: 1.5rem; /* Tăng khoảng cách dưới mỗi kỹ năng */
+    text-align: left; /* Căn lề trái cho các kỹ năng */
+    position: relative;
+}
+
+.skill-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem; /* Tăng kích thước chữ cho tên kỹ năng */
+    color: #333333; /* Màu chữ tối để nổi bật */
+    margin-bottom: 0.5rem;
+}
+
+.skill-bar {
+    position: relative;
+    background: linear-gradient(to right, #e0e0e0, #ffffff); /* Gradient background */
+    height: 1.2rem; /* Tăng chiều cao của thanh kỹ năng */
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+}
+
+.skill-percentage {
+    height: 100%;
+    border-radius: 8px;
+    background: linear-gradient(to right, #ff6347, #ff6347 60%, #ffffff); /* Gradient effect */
+    transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+.skill-percentage-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem; /* Tăng kích thước chữ cho phần trăm */
+    color: #333333; /* Màu chữ tối để dễ đọc */
+    margin-top: 0.5rem;
+    text-align: right; /* Căn lề phải cho phần trăm */
+    position: absolute;
+    right: 0.5rem; /* Đặt phần trăm nằm ở bên phải thanh kỹ năng */
+    top: 50%;
+    transform: translateY(-50%); /* Căn giữa dọc */
+}
+
+
+
+/* Timeline Section Styles */
+#timeline {
+    padding: 3rem 2rem;
+    background-color: #f4f4f4;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+}
+
+#timeline h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #ff6347;
+    text-align: center;
+}
+
+.timeline-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.timeline-column {
+    flex: 1;
+}
+
+.timeline-column h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #ff6347;
+}
+
+.timeline-item {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-content {
+    position: relative;
+}
+
+.year {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    color: #ff6347;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.timeline-content p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: #444;
+}
+
+
+/* Services Section Styles */
+.services {
+    padding: 4rem 2rem; /* Padding cho phần dịch vụ */
+    background-color: #f9f9f9; /* Nền sáng để nổi bật */
+    color: #333333; /* Màu chữ tối để dễ đọc */
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+.services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid; /* Sử dụng CSS Grid */
+    grid-template-rows: auto 1fr; /* Hai hàng: một cho tiêu đề và một cho các mục dịch vụ */
+    gap: 2rem; /* Khoảng cách giữa tiêu đề và các mục dịch vụ */
+}
+
+.services-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem; /* Kích thước tiêu đề phần dịch vụ */
+    margin-bottom: 0; /* Loại bỏ khoảng cách dưới tiêu đề */
+    color: #ff6347;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    border-bottom: 4px solid #ff6347; /* Đường viền dưới tiêu đề */
+}
+
+.services-grid {
+    display: grid; /* Sử dụng CSS Grid cho các mục dịch vụ */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Tạo lưới với các cột tự động điều chỉnh kích thước */
+    gap: 2rem; /* Khoảng cách giữa các mục dịch vụ */
+}
+
+.service-item {
+    background-color: #ffffff; /* Nền trắng cho các mục dịch vụ */
+    border-radius: 12px; /* Bo tròn góc */
+    padding: 2rem; /* Padding cho các mục dịch vụ */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Bóng đổ */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center; /* Căn giữa nội dung */
+}
+
+.service-item:hover {
+    transform: translateY(-8px); /* Hiệu ứng nổi lên khi hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.service-icon {
+    font-size: 3rem; /* Kích thước icon */
+    color: #ff6347; /* Màu icon */
+    margin-bottom: 1rem; /* Khoảng cách dưới icon */
+}
+
+.service-item h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.75rem; /* Kích thước tiêu đề dịch vụ */
+    margin-bottom: 1rem; /* Khoảng cách dưới tiêu đề dịch vụ */
+    color: #ff6347;
+}
+
+.service-item p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem; /* Kích thước chữ mô tả dịch vụ */
+    color: #444444;
+}
+
+/* Stats Section Styles */
+.stats {
+    padding: 4rem 2rem;
+    background-color: #f9f9f9;
+    color: #333333;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.stats-header h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: #ff6347;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    border-bottom: 4px solid #ff6347;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.stat-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.stat-number {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    color: #ff6347;
+    margin-bottom: 1rem;
+}
+
+.stat-label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    color: #444444;
+}
+
+/* Portfolio Section Styles */
+/* CSS cho hiệu ứng hover */
+.portfolio-item.hover {
+    transform: scale(1.05); /* Phóng to một chút */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Thêm bóng */
+}
+
+.portfolio {
+    padding: 4rem 2rem;
+    background-color: #ffffff;
+    color: #333333;
+    font-family: 'Roboto', sans-serif;
+}
+
+.portfolio-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.portfolio h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: #ff6347;
+    text-align: center;
+}
+
+.portfolio-filters {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* CSS cho hiệu ứng hover của nút */
+.filter-btn.hover {
+    background-color: #f0f0f0; /* Thay đổi màu nền */
+    color: #000; /* Thay đổi màu chữ */
+    transform: scale(1.1); /* Phóng to một chút */
+}
+
+/* CSS cho hiệu ứng di chuyển nhẹ */
+.move-on-scroll {
+    transition: transform 0.3s ease;
+}
+
+
+.filter-btn {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem 2rem;
+    margin: 0 0.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background-color: #ff6347;
+    color: #fff;
+}
+
+.portfolio-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.portfolio-item {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    opacity: 0; /* Ẩn các mục khi bắt đầu */
+    transform: translateY(20px); /* Đẩy các mục xuống dưới */
+    transition: opacity 0.5s, transform 0.5s; /* Hiệu ứng lướt và mờ dần */
+}
+
+.portfolio-item.show {
+    opacity: 1;
+    transform: translateY(0); /* Hiệu ứng lướt lên */
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-item h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #333333;
+}
+
+.portfolio-item p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    color: #666666;
+}
+
+
+
+/* Contact Section Styles */
+#contact {
+    padding: 4rem 2rem;
+    background-color: #181818;
+    text-align: center;
+}
+
+#contact h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #ff6347;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #ff6347;
+    animation: slideIn 1s ease-out;
+}
+
+#contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc; /* Add border for better visibility */
+    border-radius: 8px; /* Match with other sections */
+    background-color: #f4f4f4; /* Light background for input fields */
+    color: #333; /* Dark text for better readability */
+    font-family: 'Poppins', sans-serif;
+}
+
+#contact-form button {
+    background-color: #ff6347;
+    color: #fff;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#contact-form button:hover {
+    background-color: #e5533b;
+    transform: scale(1.05);
+}
+
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-info {
+    flex: 1;
+    max-width: 500px;
+    margin-bottom: 1rem;
+}
+
+.footer-info h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    color: #ff6347;
+    margin-bottom: 1rem;
+}
+
+.footer-info p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-info address {
+    font-style: normal;
+}
+
+.footer-info a {
+    color: #ff6347;
+    text-decoration: none;
+}
+
+.footer-info .social-links {
+    margin: 1rem 0;
+}
+
+.footer-info .social-icon {
+    margin: 0 0.5rem;
+    color: #fff;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.footer-info .social-icon:hover {
+    color: #ff6347;
+}
+
+.footer-subscribe {
+    flex: 1;
+    max-width: 500px;
+    margin-bottom: 1rem;
+}
+
+.footer-subscribe h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    color: #ff6347;
+    margin-bottom: 1rem;
+}
+
+.footer-subscribe form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-subscribe input[type="email"] {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    margin-bottom: 0.5rem;
+}
+
+.footer-subscribe button {
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.footer-subscribe button:hover {
+    background-color: #e5533b;
+}
+
+footer p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
